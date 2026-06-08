@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111827" />
+  <title>Tri Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Tri Tracker</h1>
+      <p>Swim • Bike • Run • BJJ-aware training notes</p>
+    </div>
+    <button id="installBtn" hidden>Install</button>
+  </header>
+
+  <main>
+    <section class="card grid two">
+      <div>
+        <h2>Intervals.icu Sync</h2>
+        <label>Athlete ID <input id="athleteId" placeholder="0 or your athlete ID" autocomplete="off"></label>
+        <label>API Key <input id="apiKey" type="password" placeholder="Intervals.icu API key" autocomplete="off"></label>
+        <div class="row">
+          <button id="saveSettings">Save</button>
+          <button id="syncBtn">Sync workouts</button>
+        </div>
+        <p class="hint">Credentials are stored only in this browser using local storage.</p><p id="syncStatus" class="hint"></p>
+      </div>
+      <div class="summary">
+        <h2>70.3 Readiness</h2>
+        <div id="readiness" class="big">--%</div>
+        <p id="readinessText">Sync or enter workouts to calculate.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Quick Add Workout</h2>
+      <div class="formgrid">
+        <label>Sport
+          <select id="sport">
+            <option>Run</option><option>Ride</option><option>Swim</option><option>Strength</option><option>BJJ</option>
+          </select>
+        </label>
+        <label>Date <input id="date" type="date"></label>
+        <label>Minutes <input id="minutes" type="number" min="0" step="1"></label>
+        <label>Distance <input id="distance" type="number" min="0" step="0.01" placeholder="mi or yards"></label>
+        <label>Avg HR <input id="hr" type="number" min="0" step="1"></label>
+        <label>Avg Power <input id="power" type="number" min="0" step="1"></label>
+        <label>RPE 1-10 <input id="rpe" type="number" min="1" max="10" step="1"></label>
+      </div>
+      <label>Notes <textarea id="notes" placeholder="Intervals, how it felt, pain, cadence, etc."></textarea></label>
+      <button id="addWorkout">Add workout</button>
+    </section>
+
+    <section class="card grid three">
+      <div><h3>This Week</h3><div id="weekStats"></div></div>
+      <div><h3>Last 28 Days</h3><div id="monthStats"></div></div>
+      <div><h3>Coach Notes</h3><div id="coachNotes"></div></div>
+    </section>
+
+    <section class="card">
+      <h2>Training Load</h2>
+      <canvas id="chart" height="180"></canvas>
+    </section>
+
+    <section class="card">
+      <div class="row between"><h2>Workouts</h2><button id="exportCsv">Export CSV</button></div>
+      <div id="workouts"></div>
+    </section>
+  </main>
+
+  <script src="app.js?v=3"></script>
+</body>
+</html>
